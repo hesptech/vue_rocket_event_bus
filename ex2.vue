@@ -1,28 +1,32 @@
 <template>
   <div>
-      <h1 v-on:click="changeHeader">{{header}}</h1>
+      <h1 class="">{{ headerSub }}</h1>
   </div>
 </template>
-
 <script>
+
 import { bus } from '../main'
 export default {
-  name: 'Test',
+  name: 'Test2',
   props: {
     header:{
         type: String
-    } 
+    }
   },
-  methods: {
-      changeHeader (){
-          this.header = "changed header";
-          bus.$emit('changeIt', 'changed header');
-      }
+  created (){
+      bus.$on('changeIt', (data) => {
+          this.headerSub = data;
+          // eslint-disable-next-line
+          console.log('--------------------------', data);
+      })
+  },
+  data (){
+    return {
+      headerSub: 'pippo'
+    }
   }
 }
 </script>
-
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {

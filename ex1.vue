@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="" v-on:click="changeHeader">{{ header }}</h1>
+    <h1 class="" v-on:click="changeHeader">{{ headerSub }}</h1>
   </div>
 </template>
 
@@ -13,10 +13,17 @@ export default {
       type: String
     }
   },
+  data (){
+    return {
+      headerSub: 'pippo1'
+    }
+  },
   methods: {
     changeHeader (){
-      this.header = "changed header";
-      bus.$emit('changeit', this.header);
+      // eslint-disable-next-line
+      console.log('bottom2--------------------------', this.headerSub);
+      //this.headerSub = "changed header";
+      bus.$emit('changeIt', this.headerSub);
     }
   }
 }
